@@ -1,9 +1,9 @@
-#Asset Management Dashboard
+#Asset Management Dashboard#
 
 
 This project is a React-based asset management dashboard that allows you to manage assets by adding, updating, deleting, and searching for assets. It is built using React, Material-UI, and includes functionality for managing asset data through simple state management and UI interactions.
 
-##Features
+##Features##
 Add Asset: Add new assets with fields for asset name, type, value, and status (active/inactive).
 Search Assets: Search assets by name in real-time.
 Update Asset: Update an asset’s value directly in the list using a simple prompt.
@@ -11,7 +11,7 @@ Delete Asset: Remove assets from the list with a single click.
 Getting Started with Create React App
 This project was bootstrapped with Create React App.
 
-##Available Scripts
+##Available Scripts##
 In the project directory, you can run the following commands:
 
 npm start
@@ -55,7 +55,7 @@ npm start
 Access the application in your browser at http://localhost:3000.
 
 
-##Technologies Used
+##Technologies Used##
 React: JavaScript library for building user interfaces.
 Material-UI: A popular React UI framework to build responsive layouts.
 JavaScript (ES6): For managing state, handling events, and manipulating the DOM.
