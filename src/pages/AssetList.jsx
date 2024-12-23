@@ -1,51 +1,77 @@
-import React from 'react';
-import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import React, { useState } from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
-const AssetList = () => {
-    // Static data of assets
-    const assets = [
-        { id: 1, name: 'Asset 1', type: 'Equipment', value: 5000, status: 'Active' },
-        { id: 2, name: 'Asset 2', type: 'Vehicle', value: 15000, status: 'Inactive' },
-        { id: 3, name: 'Asset 3', type: 'Property', value: 300000, status: 'Active' },
-    ];
+export default function AssetList({ assets, deleteAsset, updateAsset }) {
+  const [searchTerm, setSearchTerm] = useState('');
 
-    return (
-        <Box sx={{ padding: 3 }}>
-            <h2>Asset List</h2>
-            <Button variant="contained" color="primary" sx={{ marginBottom: 2 }}>
-                Add Asset
-            </Button>
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Type</TableCell>
-                            <TableCell>Value</TableCell>
-                            <TableCell>Status</TableCell>
-                            <TableCell>Actions</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {assets.map((asset) => (
-                            <TableRow key={asset.id}>
-                                <TableCell>{asset.name}</TableCell>
-                                <TableCell>{asset.type}</TableCell>
-                                <TableCell>{asset.value}</TableCell>
-                                <TableCell>{asset.status}</TableCell>
-                                <TableCell>
-                                    <IconButton color="primary"><EditIcon /></IconButton>
-                                    <IconButton color="error"><DeleteIcon /></IconButton>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Box>
-    );
-};
+  const handleUpdate = (id) => {
+    const asset = assets.find(asset => asset.id === id);
+    const updatedValue = prompt('Update value:', asset.value);
+    if (updatedValue !== null) {
+      updateAsset({ ...asset, value: updatedValue });
+    }
+  };
 
-export default AssetList;
+  return (
+    <div>
+      <TextField
+        label="Search Assets"
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Asset Name</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Value</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {assets
+              .filter(asset => asset.name.toLowerCase().includes(searchTerm.toLowerCase()))
+              .map((asset) => (
+                <TableRow key={asset.id}>
+                  <TableCell>{asset.name}</TableCell>
+                  <TableCell>{asset.type}</TableCell>
+                  <TableCell>{asset.value}</TableCell>
+                  <TableCell>{asset.status}</TableCell>
+                  <TableCell>
+                    <Button
+                      onClick={() => handleUpdate(asset.id)}
+                      variant="outlined"
+                      color="primary"
+                      style={{ marginRight: '8px' }}
+                    >
+                      Update
+                    </Button>
+                    <Button
+                      onClick={() => deleteAsset(asset.id)}
+                      variant="outlined"
+                      color="secondary"
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  );
+}
