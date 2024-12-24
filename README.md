@@ -1,74 +1,62 @@
-<<<<<<< HEAD
-# Asset_Dashboard
-=======
-# Getting Started with Create React App
+#Asset Management Dashboard#
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+This project is a React-based asset management dashboard that allows you to manage assets by adding, updating, deleting, and searching for assets. It is built using React, Material-UI, and includes functionality for managing asset data through simple state management and UI interactions.
 
-In the project directory, you can run:
+##Features##
+Add Asset: Add new assets with fields for asset name, type, value, and status (active/inactive).
+Search Assets: Search assets by name in real-time.
+Update Asset: Update an asset’s value directly in the list using a simple prompt.
+Delete Asset: Remove assets from the list with a single click.
+Getting Started with Create React App
+This project was bootstrapped with Create React App.
 
-### `npm start`
+##Available Scripts##
+In the project directory, you can run the following commands:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+npm start
+Runs the app in development mode.
+Open http://localhost:3000 to view it in your browser.
 
-The page will reload when you make changes.\
+The page will reload if you make changes.
 You may also see any lint errors in the console.
 
-### `npm test`
+npm test
+Launches the test runner in interactive watch mode.
+See the section about running tests for more information.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
+npm run build
+Builds the app for production to the build folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
+The build is minified, and the filenames include hashes.
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##For more information on deployment, see Deployment Docs.
 
-### `npm run eject`
+npm run eject
+Note: This is a one-way operation. Once you eject, you can't go back!
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+If you are not satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project and copy all the configuration files and transitive dependencies (Webpack, Babel, ESLint, etc.) right into your project so you have full control over them.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+How to Use
+Clone the repository:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+git clone https://github.com/your-username/asset-management-dashboard.git
+Navigate to the project folder:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+cd asset-management-dashboard
+Install dependencies:
 
-## Learn More
+npm install
+Start the development server:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+npm start
+Access the application in your browser at http://localhost:3000.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> 5f06e2b (Initial commit)
+##Technologies Used##
+React: JavaScript library for building user interfaces.
+Material-UI: A popular React UI framework to build responsive layouts.
+JavaScript (ES6): For managing state, handling events, and manipulating the DOM.
+CSS: For styling and custom UI components.
