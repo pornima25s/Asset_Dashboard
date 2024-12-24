@@ -1,46 +1,117 @@
-import React from 'react'
-import Sidenav from '../components/Sidenav'
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Sidenav from '../components/Sidenav';
+import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
+import { Pie, getElementAtEvent } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    ArcElement,
+    Tooltip,
+    Legend,
+    Title,
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-export default function Setting() {
+// Register chart components
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    ArcElement,
+    Tooltip,
+    Legend,
+    Title
+);
+
+function Setting({ pieClick }) {
+    const chartRef = useRef();
+
+    // Asset data for the pie chart
+    const data = {
+        labels: ['Building', 'Vehicles', 'Furniture', 'Electronics', 'Others'],
+        datasets: [
+            {
+                label: 'Asset Distribution',
+                data: [40, 25, 15, 10, 10], // Example percentages
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.8)', // Blue
+                    'rgba(255, 99, 132, 0.8)', // Red
+                    'rgba(255, 206, 86, 0.8)', // Yellow
+                    'rgba(75, 192, 192, 0.8)', // Green
+                    'rgba(153, 102, 255, 0.8)', // Purple
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
+
+    // Options for the pie chart
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'right', // Place the legend on the right
+                labels: {
+                    font: {
+                        size: 12, // Slightly smaller font size
+                    },
+                },
+            },
+            title: {
+                display: true,
+                text: 'Asset Distribution Overview',
+                font: {
+                    size: 18, // Slightly smaller title size
+                    weight: 'bold',
+                },
+                color: '#333',
+            },
+            datalabels: {
+                color: '#fff',
+                font: {
+                    weight: 'bold',
+                    size: 10,
+                },
+                formatter: (value, context) => `${value}%`,
+            },
+        },
+    };
+
+    const onClick = (event) => {
+        const { current: chart } = chartRef;
+        const clickArr = getElementAtEvent(chart, event);
+        if (clickArr.length > 0) {
+            pieClick(clickArr[0]);
+        }
+    };
+
     return (
         <>
-            <Box sx={{ display: "flex" }}>
-                <Sidenav />
-                <Box component="main" sx={{ flexGrow: 1, p: 7 }}>
-                    
-                <h1>Settings</h1>
-                    <Typography sx={{ marginBottom: 2 }}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                        enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                        imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                        Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                        Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                        adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                        nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                        leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                        feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                        consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                        sapien faucibus et molestie ac.
-                    </Typography>
-                    <Typography sx={{ marginBottom: 2 }}>
-                        Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-                        eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-                        neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-                        tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-                        sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                        tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-                        gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                        et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-                        tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                        eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                        posuere sollicitudin aliquam ultrices sagittis orci a.
-                    </Typography>
-                </Box>
-            </Box>
-
+            <Sidenav />
+            <div style={{ margin: '20px', textAlign: 'center' }}>
+                <div style={{ width: '50%', margin: '0 auto', backgroundColor: '#f9f9f9', borderRadius: '10px', padding: '15px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+                    <Pie 
+                        ref={chartRef}
+                        options={options}
+                        plugins={[ChartDataLabels]}
+                        data={data}
+                        onClick={onClick}
+                    />
+                </div>
+            </div>
         </>
-    )
+    );
 }
+
+Setting.propTypes = {
+    pieClick: PropTypes.func.isRequired,
+};
+
+export default Setting;
