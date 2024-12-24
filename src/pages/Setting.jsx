@@ -96,7 +96,7 @@ function Setting({ pieClick }) {
         <>
             <Sidenav />
             <div style={{ margin: '20px', textAlign: 'center' }}>
-                <div style={{ width: '50%', margin: '0 auto', backgroundColor: '#f9f9f9', borderRadius: '10px', padding: '15px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+                <div style={{ width: '50%', margin: '0 auto', borderRadius: '10px', padding: '15px',  }}>
                     <Pie 
                         ref={chartRef}
                         options={options}
